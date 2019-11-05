@@ -72,19 +72,41 @@ async function onSubmitFormHandler() {
     }
 }
 
+function buildImgTag() {
+    return stateImagesArray.imageArray.map(imageURI => (<Card style={{ width: '20%', margin: 10 }} key={imageURI}>
+        <CardBody style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <img className="photo-uploaded" style={{ width: '100%' }} src={imageURI} alt="ph uploaded" />
+        </CardBody>
+    </Card>
+    ))
+}
+
+
 
 //render part
-//input tag for input image files one or more
-<input
-    id={stateImagesArray.id}
-    type="file"
-    name=""
-    accept="image/gif,image/jpeg,image/jpg,image/png,video/mp4,video/x-m4v"
-    title="Add photos or video"
-    onChange={handleChange}
-    multiple
-/>
-<Button color="primary" className="mt-1" onClick={uploadImagesToCloudnary}>Submit</Button>
-
+//input tag for input image files one or more (form is comming from material ui)
+<Form>
+    <FormGroup>
+        <Label for="exampleImages">Product Images</Label>
+        <div>
+            <input
+                id={stateImagesArray.id}
+                type="file"
+                name=""
+                accept="image/gif,image/jpeg,image/jpg,image/png,video/mp4,video/x-m4v"
+                title="Add photos or video"
+                onChange={handleChange}
+                multiple
+            />
+        </div>
+        <FormText color="muted">
+            Notice : The first selected product will be the cover photo for display
+            </FormText>
+        <Row>
+            {buildImgTag()}  //to render uploaded images into DOM
+        </Row>
+    </FormGroup>
+    <Button color="primary" className="mt-1" onClick={uploadImagesToCloudnary}>Submit</Button>
+</Form>
 
 
