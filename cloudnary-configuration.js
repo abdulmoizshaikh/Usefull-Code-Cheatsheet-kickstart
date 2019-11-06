@@ -110,3 +110,14 @@ function buildImgTag() {
 </Form>
 
 
+
+// Render image by public_id in react front end client side using cloudnary-react npm pkg
+
+import { Image, Video, Transformation, CloudinaryContext } from 'cloudinary-react';
+
+
+ <Image cloudName="sar-com" publicId={item.img[0]} width="280" height="350" crop="scale" responsive>
+    <Transformation height="300" width="280" crop="fill" gravity="faces" radius="5" />
+</Image>
+
+
